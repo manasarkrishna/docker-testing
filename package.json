@@ -1,0 +1,39 @@
+{
+  "name": "issue-tracker",
+  "version": "1.0.0",
+  "description": "Full-stack issue tracking web application",
+  "scripts": {
+    "install:all": "cd backend && npm install && cd ../frontend && npm install",
+    "start:backend": "cd backend && npm start",
+    "start:frontend": "cd frontend && npm run dev",
+    "build:frontend": "cd frontend && npm run build",
+    "test:backend": "cd backend && npm test",
+    "test:backend:watch": "cd backend && npm run test:watch",
+    "test:backend:coverage": "cd backend && npm run test:coverage",
+    "test:frontend": "cd frontend && npm test",
+    "test:frontend:ui": "cd frontend && npm run test:ui",
+    "test:frontend:coverage": "cd frontend && npm run test:coverage",
+    "test:all": "npm run test:backend && npm run test:frontend",
+    "docker:build": "docker-compose build",
+    "docker:up": "docker-compose up -d",
+    "docker:down": "docker-compose down",
+    "docker:logs": "docker-compose logs -f"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/yourusername/issue-tracker.git"
+  },
+  "keywords": [
+    "issue-tracker",
+    "react",
+    "express",
+    "sqlite",
+    "full-stack"
+  ],
+  "author": "Your Name",
+  "license": "MIT",
+  "engines": {
+    "node": ">=14.0.0",
+    "npm": ">=6.0.0"
+  }
+}
