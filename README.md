@@ -284,7 +284,104 @@ Notes & Design Decisions
 
 6. State Management: React hooks sufficient for this app's complexity. Redux/Context API could be added for scaling.
 
- Deployment
+ Docker Deployment
+
+ Prerequisites
+- Docker installed on your system
+- Docker Compose installed
+- Docker Hub account (for pushing/pulling images)
+
+ Quick Start with Docker Compose
+
+Run the entire application with a single command:
+```bash
+docker-compose up -d
+```
+
+Stop the application:
+```bash
+docker-compose down
+```
+
+ Building Docker Images
+
+Build both images:
+```bash
+# Backend
+docker build -t mrk31/issue-tracker-backend:latest ./backend
+
+# Frontend
+docker build -t mrk31/issue-tracker-frontend:latest ./frontend
+```
+
+ Pulling Images from Docker Hub
+
+Pull pre-built images:
+```bash
+# Backend
+docker pull mrk31/issue-tracker-backend:latest
+
+# Frontend
+docker pull mrk31/issue-tracker-frontend:latest
+```
+
+ Pushing Images to Docker Hub
+
+Login to Docker Hub:
+```bash
+docker login
+```
+
+Push images:
+```bash
+# Backend
+docker push mrk31/issue-tracker-backend:latest
+
+# Frontend
+docker push mrk31/issue-tracker-frontend:latest
+```
+
+ Running Individual Containers
+
+Backend:
+```bash
+docker run -d \
+  --name issue-tracker-backend \
+  -p 5000:5000 \
+  -v $(pwd)/backend/data:/app/data \
+  mrk31/issue-tracker-backend:latest
+```
+
+Frontend:
+```bash
+docker run -d \
+  --name issue-tracker-frontend \
+  -p 80:80 \
+  mrk31/issue-tracker-frontend:latest
+```
+
+ Docker Commands Reference
+
+```bash
+# View running containers
+docker ps
+
+# View logs
+docker logs issue-tracker-backend
+docker logs issue-tracker-frontend
+
+# Stop containers
+docker stop issue-tracker-backend issue-tracker-frontend
+
+# Remove containers
+docker rm issue-tracker-backend issue-tracker-frontend
+
+# Remove images
+docker rmi mrk31/issue-tracker-backend:latest
+docker rmi mrk31/issue-tracker-frontend:latest
+```
+
+ Traditional Deployment
 
 Backend (Render, Heroku, DigitalOcean)
 1. Push code to Git repository
@@ -295,9 +392,6 @@ Backend (Render, Heroku, DigitalOcean)
 1. Build: `npm run build`
 2. Output directory: `dist/`
 3. Set environment variable for API URL
-
-Docker (Optional)
-Create a multi-stage Dockerfile for containerization.
 
  Additional Resources
 
